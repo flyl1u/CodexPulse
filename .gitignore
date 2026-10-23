@@ -1,0 +1,35 @@
+# Local work and runtime data
+work/
+runtime/
+backups/
+.codex/
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+*.local.json
+
+# Client state and personal activity snapshots
+.codex-global-state.json
+*-inventory.json
+*-activity.json
+*-backup.json
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.log
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
