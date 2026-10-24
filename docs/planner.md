@@ -1,5 +1,7 @@
 # 只读排序规划器
 
+本文描述历史 Python 工具。自动排序版本使用 `bin/codex-pulse.mjs`，安装和运行方式见项目 README。
+
 `scripts/sidebar_project_sort.py` 整理自前期调查脚本，保留原有逻辑，只依赖 Python 标准库。
 它计算排序计划，不更新侧边栏、不注册 Hook，也不执行 Git 提交。
 
@@ -51,4 +53,4 @@ SQLite 使用 `mode=ro` 及 `PRAGMA query_only=ON`，查询未归档对话的活
 ```
 
 调用方应仅在 `changed` 为 `true` 时尝试更新排序。
-输出不是客户端写入已完成的证明；写入适配器和事件接入仍待实现。
+该 Python 工具的输出不是客户端写入已完成的证明；自动版另由 Node.js 的客户端适配器执行写入和验证。
