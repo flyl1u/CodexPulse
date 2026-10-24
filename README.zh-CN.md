@@ -1,4 +1,4 @@
-# Codex Pulse · 项目脉动
+# Codex Pulse
 
 [English](README.md) · **简体中文**
 
