@@ -1,0 +1,16 @@
+{
+  "theme": "default",
+  "htmlLabels": false,
+  "markdownAutoWrap": false,
+  "fontFamily": "Trebuchet MS, Microsoft YaHei, Arial, sans-serif",
+  "deterministicIds": true,
+  "deterministicIDSeed": "codex-pulse-architecture",
+  "flowchart": {
+    "wrappingWidth": 280,
+    "curve": "basis",
+    "nodeSpacing": 36,
+    "rankSpacing": 40,
+    "padding": 18,
+    "diagramPadding": 24
+  }
+}

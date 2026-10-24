@@ -45,15 +45,24 @@ Codex Pulse 是运行在你电脑上的小程序，每轮对话结束后，它�
 
 ## 设计架构
 
+<!-- architecture:start -->
 ```mermaid
-flowchart TD
-    A[一轮对话完成] --> B[启动本地脚本]
-    B --> C[读取项目顺序与聊天活动时间]
-    C --> D{顺序需要改变吗？}
-    D -- 否 --> E[记录结果并退出]
-    D -- 是 --> F[复查分区并调用客户端重排]
-    F --> G[重新读取，验证结果后退出]
+flowchart LR
+    A["一轮对话完成<br/>agent-turn-complete"] --> B["启动本地脚本<br/>转发原通知 · 获取锁"]
+    B --> C["读取项目顺序<br/>与聊天活动时间"]
+    S[("本地状态与 SQLite<br/>只读活动数据")] --> C
+    C --> D{"顺序需要<br/>改变吗？"}
+    D -->|否| E["记录结果<br/>退出"]
+    D -->|是| F["复查分区<br/>调用客户端重排"]
+    F --> G["重新读取<br/>验证结果后退出"]
+    classDef service fill:#e8f0fe,stroke:#547ac4,color:#172b4d
+    classDef storage fill:#e6f5ef,stroke:#4b9b7e,color:#153c2e
+    class B,C,F service
+    class S,E,G storage
 ```
+
+[SVG](docs/diagrams/architecture.zh-CN.svg) · [PNG](docs/diagrams/architecture.zh-CN.png) · [Mermaid 源码](docs/diagrams/architecture.zh-CN.mmd)
+<!-- architecture:end -->
 
 进入排序检查前，回调先转发原有通知，再获取进程锁，多个聊天同时完成时，锁让这些回调排队执行
 

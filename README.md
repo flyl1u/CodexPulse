@@ -47,15 +47,24 @@ The script does not stay open waiting for messages. Codex launches it again afte
 
 ## Architecture
 
+<!-- architecture:start -->
 ```mermaid
-flowchart TD
-    A[One conversation turn completes] --> B[Codex starts the local script]
-    B --> C[Read project order and conversation activity]
-    C --> D{Does the order need to change?}
-    D -- No --> E[Log the result and exit]
-    D -- Yes --> F[Recheck sections and ask the client to reorder]
-    F --> G[Read back, verify, and exit]
+flowchart LR
+    A["Turn completes<br/>agent-turn-complete"] --> B["Local script<br/>Forward notification · lock"]
+    B --> C["Read project order<br/>and conversation activity"]
+    S[("Local state + SQLite<br/>Read-only activity")] --> C
+    C --> D{"Order<br/>changed?"}
+    D -->|No| E["Log result<br/>Exit"]
+    D -->|Yes| F["Recheck sections<br/>Client reorders"]
+    F --> G["Read back<br/>Verify and exit"]
+    classDef service fill:#e8f0fe,stroke:#547ac4,color:#172b4d
+    classDef storage fill:#e6f5ef,stroke:#4b9b7e,color:#153c2e
+    class B,C,F service
+    class S,E,G storage
 ```
+
+[SVG](docs/diagrams/architecture.en.svg) · [PNG](docs/diagrams/architecture.en.png) · [Mermaid source](docs/diagrams/architecture.en.mmd)
+<!-- architecture:end -->
 
 Before the sorting check, the callback forwards the original notification and acquires a process lock. That lock serializes overlapping callbacks from multiple conversations.
 
