@@ -7,3 +7,6 @@
 *.svg text eol=lf
 .gitignore text eol=lf
 .gitattributes text eol=lf
+
+# 仅调整 GitHub 语言统计，保留 JavaScript 的运行方式和语法高亮。
+*.mjs linguist-detectable=false
