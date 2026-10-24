@@ -41,6 +41,14 @@ test('excludes projectless and subagent activity', () => {
   assert.deepEqual(planOrder(inventory(), {}, rows).projectIds, ['a', 'b']);
 });
 
+test('does not reintroduce excluded subagents from sidebar summaries', () => {
+  const input = inventory();
+  input.threads = [{id: 'tb', projectId: 'b', hostId: 'local', kind: 'codex', updatedAt: 9999}];
+  const rows = structuredClone(activity);
+  rows[1].source = {subagent: {parent_thread_id: 'ta'}};
+  assert.deepEqual(planOrder(input, {}, rows).projectIds, ['a', 'b']);
+});
+
 test('preserves pinned, remote, ChatGPT, and custom-section projects', () => {
   const input = inventory();
   input.projects.push({projectId: 'remote', projectKind: 'local', hostId: 'ssh:host'},

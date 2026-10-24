@@ -33,6 +33,7 @@ export function planOrder(inventory, state, rows) {
   }
   const assignments = state['thread-project-assignments'] || {};
   const projectless = new Set(state['projectless-thread-ids'] || []);
+  const excludedThreads = new Set(projectless);
   const latest = new Map();
   const resolve = id => available.has(id) ? id : aliases.get(id);
   const record = (projectId, timestamp) => {
@@ -42,16 +43,19 @@ export function planOrder(inventory, state, rows) {
     }
   };
   for (const row of rows) {
-    if (projectless.has(row.id) || String(JSON.stringify(row.source) || '').toLowerCase().includes('subagent')) continue;
+    if (projectless.has(row.id) || String(JSON.stringify(row.source) || '').toLowerCase().includes('subagent')) {
+      excludedThreads.add(row.id);
+      continue;
+    }
     const assignment = assignments[row.id];
-    if (assignment?.projectOrigin === 'chatgpt') continue;
+    if (assignment?.projectOrigin === 'chatgpt') { excludedThreads.add(row.id); continue; }
     const assignedId = typeof assignment === 'string' ? assignment : assignment?.projectId;
     const projectId = resolve(assignedId || row.project_id) || pathIds.get(normalizePath(row.cwd));
     record(projectId, row.activity_ms);
   }
   const databaseProjects = new Set(latest.keys());
   for (const thread of [...(inventory.threads || []), ...(inventory.pinnedThreads || [])]) {
-    if (thread.kind !== 'codex' || (thread.hostId || 'local') !== 'local' || projectless.has(thread.id)) continue;
+    if (thread.kind !== 'codex' || (thread.hostId || 'local') !== 'local' || excludedThreads.has(thread.id)) continue;
     // SQLite is the complete local activity source; inventory only fills missing projects.
     const projectId = resolve(thread.projectId);
     if (!databaseProjects.has(projectId)) {

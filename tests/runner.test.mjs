@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import os from 'node:os';
-import {mkdtempSync, rmSync, readFileSync, writeFileSync} from 'node:fs';
+import {mkdtempSync, rmSync, readFileSync, writeFileSync, utimesSync, existsSync} from 'node:fs';
 import {setTimeout as delay} from 'node:timers/promises';
 import {sortOnce, withLock, recordRun} from '../src/runner.mjs';
 import {eventContext, forwardNotification} from '../src/events.mjs';
@@ -82,6 +82,22 @@ test('handles notify and Stop identities, ignoring other event types', () => {
   assert.equal(eventContext({type: 'approval-requested'}), null);
   assert.equal(eventContext({hook_event_name: 'Stop', session_id: 't', stop_hook_active: true}), null);
   assert.equal(eventContext({hook_event_name: 'Stop', session_id: 't'}).threadId, 't');
+});
+
+test('recovers an old partial lock left by a crashed process', async () => {
+  const dir = mkdtempSync(path.join(os.tmpdir(), 'pulse-lock-'));
+  try {
+    const file = path.join(dir, 'sort.lock');
+    writeFileSync(file, '{');
+    const old = new Date(Date.now() - 60000);
+    utimesSync(file, old, old);
+    assert.equal(await withLock(dir, async () => 'recovered', {waitMs: 100}), 'recovered');
+    assert.equal(existsSync(file), false);
+  } finally {
+    assert.equal(path.dirname(path.resolve(dir)), path.resolve(os.tmpdir()));
+    assert.ok(path.basename(dir).startsWith('pulse-lock-'));
+    rmSync(dir, {recursive: true, force: true});
+  }
 });
 
 test('forwards a notification exactly once without shell interpolation', () => {

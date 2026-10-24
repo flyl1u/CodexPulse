@@ -1,4 +1,4 @@
-import {appendFileSync, existsSync, mkdirSync, openSync, closeSync, readFileSync, unlinkSync, writeFileSync} from 'node:fs';
+import {appendFileSync, existsSync, mkdirSync, openSync, closeSync, readFileSync, statSync, unlinkSync, writeFileSync} from 'node:fs';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {setTimeout as delay} from 'node:timers/promises';
@@ -42,14 +42,19 @@ export async function withLock(runtimeDir, action, {waitMs = 15000} = {}) {
       const fd = openSync(lockPath, 'wx');
       try {
         writeFileSync(fd, JSON.stringify({pid: process.pid, token, createdAt: Date.now()}));
+      } catch (writeError) {
+        unlinkSync(lockPath);
+        throw writeError;
       } finally {
         closeSync(fd);
       }
       break;
     } catch (error) {
       if (error.code !== 'EEXIST') throw error;
+      let oldContents;
       try {
-        const old = JSON.parse(readFileSync(lockPath, 'utf8'));
+        oldContents = readFileSync(lockPath, 'utf8');
+        const old = JSON.parse(oldContents);
         if (Number.isInteger(old.pid) && old.pid > 0) {
           try {
             process.kill(old.pid, 0);
@@ -62,6 +67,18 @@ export async function withLock(runtimeDir, action, {waitMs = 15000} = {}) {
         }
       } catch (readError) {
         if (readError.code === 'ENOENT') continue;
+        // Recover a partial lock left by a crash between creation and writing.
+        if (readError instanceof SyntaxError) {
+          try {
+            const age = Date.now() - statSync(lockPath).mtimeMs;
+            if (age > 30000 && readFileSync(lockPath, 'utf8') === oldContents) {
+              unlinkSync(lockPath);
+              continue;
+            }
+          } catch (staleError) {
+            if (staleError.code === 'ENOENT') continue;
+          }
+        }
       }
       if (Date.now() >= deadline) throw new Error('SORT_LOCK_TIMEOUT');
       await delay(60);
