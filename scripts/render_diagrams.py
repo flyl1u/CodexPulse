@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DIAGRAMS = ROOT / "docs" / "diagrams"
 START = "<!-- architecture:start -->"
 END = "<!-- architecture:end -->"
-LANGUAGES = (("en", "README.md", "Mermaid source"),
-             ("zh-CN", "README.zh-CN.md", "Mermaid 源码"))
+LANGUAGES = (("en", "README.en.md", "Mermaid source"),
+             ("zh-CN", "README.md", "Mermaid 源码"))
 
 
 def sync_readme(language, name, source_label):

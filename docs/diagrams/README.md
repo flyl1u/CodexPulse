@@ -18,7 +18,7 @@ python scripts/render_diagrams.py --browser 'C:\Program Files (x86)\Microsoft\Ed
 
 Use `--browser` to select your installed Chrome or Edge. Omit it if Puppeteer already has a browser available. Rendering uses local Mermaid sources; it does not call an image-generation service. SVG labels are text, rather than HTML `foreignObject` nodes, for portable embedding; PNG exports use a 2× scale.
 
-The script exports both languages as SVG and PNG, then synchronizes only the marked architecture blocks in the two READMEs. To update the README code blocks without exporting images:
+The script exports both languages as SVG and PNG, then synchronizes only the marked architecture blocks in the Chinese `README.md` and English `README.en.md`. The previous `README.zh-CN.md` remains as a link to the default Chinese README. To update the README code blocks without exporting images:
 
 ```powershell
 python scripts/render_diagrams.py --sync-only
