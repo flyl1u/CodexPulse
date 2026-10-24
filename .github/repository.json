@@ -1,0 +1,17 @@
+{
+  "description": "Event-driven project sorting for Codex. Runs locally after each conversation turn, with no extra model calls. | Codex 项目自动排序：对话结束触发、本地按需重排，不额外调用模型。",
+  "topics": [
+    "codex",
+    "openai-codex",
+    "codex-desktop",
+    "automation",
+    "event-driven",
+    "sidebar",
+    "project-management",
+    "productivity",
+    "developer-tools",
+    "nodejs",
+    "python",
+    "windows"
+  ]
+}
