@@ -8,5 +8,5 @@
 .gitignore text eol=lf
 .gitattributes text eol=lf
 
-# 仅调整 GitHub 语言统计，保留 JavaScript 的运行方式和语法高亮。
-*.mjs linguist-detectable=false
+# 仅排除 JavaScript 测试文件的语言统计，运行代码仍正常计入。
+tests/*.test.mjs linguist-detectable=false
