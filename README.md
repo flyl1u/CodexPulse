@@ -22,27 +22,11 @@
 
 2026-10-24 的 Windows 实测已确认：自然触发的回调完成了重排，随后重复检查没有再次重排。见[验证记录](docs/verification.md)。
 
-## 开始使用
-
-在 **Codex 桌面端**，把下面这段发给 Agent：
-
-```text
-请帮我安装并启用 Codex Pulse：
-https://github.com/flyl1u/fly-CodexPulse
-按仓库说明检查环境、保留原有通知，
-并验证安装和对话结束回调是否生效。
-```
-
-[手动安装、检查与卸载 →](docs/installation.md)
-
-## 它如何工作
+## 设计架构
 
 **对话结束 → 读取本地活动时间 → 比较顺序 → 按需重排并回读确认。**
 
 同一项目取最近一次有效聊天活动；时间相同时保留原顺序。已有通知会先原样转发，并发回调通过锁排队执行。
-
-<details>
-<summary>展开查看设计架构</summary>
 
 <!-- architecture:start -->
 ```mermaid
@@ -63,7 +47,18 @@ flowchart LR
 [SVG](docs/diagrams/architecture.zh-CN.svg) · [PNG](docs/diagrams/architecture.zh-CN.png) · [Mermaid 源码](docs/diagrams/architecture.zh-CN.mmd)
 <!-- architecture:end -->
 
-</details>
+## 开始使用
+
+在 **Codex 桌面端**，把下面这段发给 Agent：
+
+```text
+请帮我安装并启用 Codex Pulse：
+https://github.com/flyl1u/fly-CodexPulse
+按仓库说明检查环境、保留原有通知，
+并验证安装和对话结束回调是否生效。
+```
+
+[手动安装、检查与卸载 →](docs/installation.md)
 
 ## 作用范围
 

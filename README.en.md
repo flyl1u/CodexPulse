@@ -26,28 +26,11 @@ Starting with **A → B → C**, assuming no other project becomes active:
 
 Windows verification on 2026-10-24 confirmed that a natural callback reordered projects and a repeated check made no further reorder request. See the [verification record](docs/verification.md).
 
-## Get started
-
-Send this prompt to your Agent in **Codex desktop**:
-
-```text
-Install and enable Codex Pulse:
-https://github.com/flyl1u/fly-CodexPulse
-Follow the repo's setup instructions.
-Preserve existing notifications and
-verify the turn-completion callback.
-```
-
-[Manual installation, checks, and uninstall →](docs/installation.en.md)
-
-## How it works
+## Architecture
 
 **Turn completes → read local activity → compare order → reorder if needed and verify.**
 
 Each project uses its latest eligible conversation activity; ties retain the current order. The original notification is forwarded first, and a lock serializes overlapping callbacks.
-
-<details>
-<summary>View the architecture</summary>
 
 <!-- architecture:start -->
 ```mermaid
@@ -68,7 +51,19 @@ flowchart LR
 [SVG](docs/diagrams/architecture.en.svg) · [PNG](docs/diagrams/architecture.en.png) · [Mermaid source](docs/diagrams/architecture.en.mmd)
 <!-- architecture:end -->
 
-</details>
+## Get started
+
+Send this prompt to your Agent in **Codex desktop**:
+
+```text
+Install and enable Codex Pulse:
+https://github.com/flyl1u/fly-CodexPulse
+Follow the repo's setup instructions.
+Preserve existing notifications and
+verify the turn-completion callback.
+```
+
+[Manual installation, checks, and uninstall →](docs/installation.en.md)
 
 ## Scope
 
