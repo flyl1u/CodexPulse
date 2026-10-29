@@ -37,7 +37,7 @@ module.exports = ({ draw: d }) => {
   function sidebar(x, after, lang) {
     const y = 200;
     const order = after ? ['B', 'A', 'C'] : ['A', 'B', 'C'];
-    let art = d.box({ x, y, w: 300, h: 340, fill: '#FFFCF4', seed: after ? 7 : 4 });
+    let art = d.box({ x, y, w: 300, h: 340, fill: '#FFFFFF', seed: after ? 7 : 4 });
     art += d.path(`M${x + 22} ${y + 66} Q${x + 150} ${y + 69} ${x + 277} ${y + 65}`, {
       width: 1.7, color: '#B8B5A7',
     });
@@ -61,7 +61,7 @@ module.exports = ({ draw: d }) => {
     const description = zh
       ? '侧边栏排序示意，非客户端截图：在 B 项目完成一轮对话后，项目顺序从 A、B、C 调整为 B、A、C。'
       : 'Sidebar sorting illustration, not a client screenshot: after a turn finishes in project B, the order changes from A, B, C to B, A, C.';
-    const background = d.paper({ width, height });
+    const background = d.paper({ width, height, color: '#FCFCFA' });
     let art = `<desc id="description">${d.esc(description)}</desc>`;
     // A broad pencil highlight ties the name to the warm active-project row.
     art += d.path('M65 301 Q264 312 545 298', { color: '#F4D786', width: 17, opacity: 0.7 });
