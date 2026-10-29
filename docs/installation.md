@@ -18,8 +18,8 @@
 克隆到准备长期保留的目录，并在 Codex 桌面端中把该目录作为项目打开：
 
 ```powershell
-git clone https://github.com/flyl1u/CodexPluse.git
-cd CodexPluse
+git clone https://github.com/flyl1u/CodexPulse.git
+cd CodexPulse
 ```
 
 通过 Codex 提供、继承了桌面客户端环境的 shell，在项目根目录执行：
