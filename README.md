@@ -52,9 +52,10 @@ flowchart LR
 在 **Codex 桌面端**，把下面这段发给 Agent：
 
 ```text
-请帮我安装并启用 CodexPluse：
-https://github.com/flyl1u/fly-CodexPulse
-按仓库说明检查环境、保留原有通知，
+请帮我下载、安装并启用 CodexPluse：
+https://github.com/flyl1u/CodexPluse/releases/latest/download/codex-pulse.zip
+将发布包解压到准备长期保留的目录，
+按包内说明检查环境、保留原有通知，
 并验证安装和对话结束回调是否生效。
 ```
 

@@ -56,9 +56,10 @@ flowchart LR
 Send this prompt to your Agent in **Codex desktop**:
 
 ```text
-Install and enable CodexPluse:
-https://github.com/flyl1u/fly-CodexPulse
-Follow the repo's setup instructions.
+Download, install, and enable CodexPluse:
+https://github.com/flyl1u/CodexPluse/releases/latest/download/codex-pulse.zip
+Extract the release package to a permanent directory
+and follow the included setup instructions.
 Preserve existing notifications and
 verify the turn-completion callback.
 ```

@@ -18,8 +18,8 @@ There are no npm or pip dependencies. You can use the runtimes supplied by Codex
 Clone into a directory you intend to keep, then open that directory as a project in Codex desktop:
 
 ```powershell
-git clone https://github.com/flyl1u/fly-CodexPulse.git
-cd fly-CodexPulse
+git clone https://github.com/flyl1u/CodexPluse.git
+cd CodexPluse
 ```
 
 Run from the project root through a Codex-provided shell that inherits the desktop environment:
