@@ -81,11 +81,11 @@ module.exports = ({ draw: d }) => {
     });
     return {
       id,
-      title: zh ? 'Codex Pulse — 最近聊的项目，自动排到前面' : 'Codex Pulse — Your latest project, back at the top',
+      title: zh ? 'CodexPluse — 最近聊的项目，自动排到前面' : 'CodexPluse — Your latest project, back at the top',
       width, height, background, art,
       labels: [
         label('Codex Desktop', 66, 165, 475, 48, 23, { color: muted }),
-        label('Codex Pulse', 60, 204, 505, 132, 88, { bold: true, letterSpacing: -3 }),
+        label('CodexPluse', 60, 204, 505, 132, 88, { bold: true, letterSpacing: -3 }),
         label(zh ? '让最近聊的项目，自动靠前。' : 'Your latest project, on top.',
           66, 338, 475, 51, zh ? 34 : 32, { font: sans }),
         label(zh ? '对话结束触发，本地按需重排。' : 'Turn complete. Local sort, as needed.',
@@ -102,7 +102,7 @@ module.exports = ({ draw: d }) => {
   }
 
   return {
-    title: 'Codex Pulse README headers',
+    title: 'CodexPluse README headers',
     slides: [slide('zh-CN'), slide('en')],
     sources: [
       'Project behavior: README.md, README.en.md and docs/verification.md in this repository.',

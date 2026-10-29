@@ -1,13 +1,13 @@
-# Codex Pulse
+# CodexPluse
 
 **简体中文** · [English](README.en.md)
 
 <p align="center">
-  <img src="assets/readme/hero.zh-CN.svg" width="100%" alt="Codex Pulse：在 B 项目完成一轮对话后，将项目顺序从 A、B、C 调整为 B、A、C。侧边栏排序示意。">
+  <img src="assets/readme/hero.zh-CN.svg" width="100%" alt="CodexPluse：在 B 项目完成一轮对话后，将项目顺序从 A、B、C 调整为 B、A、C。侧边栏排序示意。">
 </p>
 
 **让 Codex 侧边栏按最近对话排列项目。**
-每轮对话结束后，Codex Pulse 启动本地脚本，把最近活跃的本机项目往前排，处理完就退出，不消耗额度，排序可能有一定延迟，约15s
+每轮对话结束后，CodexPluse 启动本地脚本，把最近活跃的本机项目往前排，处理完就退出，不消耗额度，排序可能有一定延迟，约15s
 
 
 ## 看一次就懂
@@ -52,7 +52,7 @@ flowchart LR
 在 **Codex 桌面端**，把下面这段发给 Agent：
 
 ```text
-请帮我安装并启用 Codex Pulse：
+请帮我安装并启用 CodexPluse：
 https://github.com/flyl1u/fly-CodexPulse
 按仓库说明检查环境、保留原有通知，
 并验证安装和对话结束回调是否生效。

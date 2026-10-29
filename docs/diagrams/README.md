@@ -8,7 +8,7 @@ The diagram adds the read-only data source to the original completion → check 
 
 ## Regenerate
 
-Install the export tool only into the ignored `work/` directory. This does not add a runtime dependency to Codex Pulse.
+Install the export tool only into the ignored `work/` directory. This does not add a runtime dependency to CodexPluse.
 
 ```powershell
 $env:PUPPETEER_SKIP_DOWNLOAD = '1'

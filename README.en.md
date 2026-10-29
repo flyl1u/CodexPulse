@@ -1,14 +1,14 @@
-# Codex Pulse
+# CodexPluse
 
 [简体中文](README.md) · **English**
 
 <p align="center">
-  <img src="assets/readme/hero.en.svg" width="100%" alt="Codex Pulse: finishing a turn in project B changes the project order from A, B, C to B, A, C. Sidebar sorting illustration.">
+  <img src="assets/readme/hero.en.svg" width="100%" alt="CodexPluse: finishing a turn in project B changes the project order from A, B, C to B, A, C. Sidebar sorting illustration.">
 </p>
 
 **Keep Codex sidebar projects ordered by recent conversations.**
 
-After each conversation turn, Codex Pulse runs a local script to move recently active local projects up, then exits.
+After each conversation turn, CodexPluse runs a local script to move recently active local projects up, then exits.
 
 - **Event driven**: no polling or persistent background service.
 - **Local computation**: timestamp sorting makes no additional model calls or use of your model allowance.
@@ -56,7 +56,7 @@ flowchart LR
 Send this prompt to your Agent in **Codex desktop**:
 
 ```text
-Install and enable Codex Pulse:
+Install and enable CodexPluse:
 https://github.com/flyl1u/fly-CodexPulse
 Follow the repo's setup instructions.
 Preserve existing notifications and
